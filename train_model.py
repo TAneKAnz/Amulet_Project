@@ -1,3 +1,4 @@
+import json
 import tensorflow as tf
 from tensorflow.keras import layers, models
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
@@ -45,6 +46,9 @@ input_shape = (128, 128, 3)  # adjust the input size according to your images
 # Get the list of class names dynamically from the folder names
 class_names = sorted(os.listdir('/Users/tanekanz/CEPP-2/dataset/train'))
 
+for class_name in class_names:
+    print(class_name)
+
 # Get the number of classes
 num_classes = len(class_names)
 
@@ -67,7 +71,7 @@ datagen = ImageDataGenerator(rescale=1./255,
                              validation_split=0.2)
 
 # Set up data generators for training and validation
-batch_size = 32
+batch_size = 128
 train_generator = datagen.flow_from_directory('/Users/tanekanz/CEPP-2/dataset/train',
                                               target_size=(128, 128),
                                               batch_size=batch_size,
@@ -93,16 +97,24 @@ checkpoint_callback = ModelCheckpoint(checkpoint_path, save_best_only=True, save
 # Train the model
 history = model.fit(train_generator,
                     steps_per_epoch=steps_per_epoch_train,
-                    epochs=10,
+                    epochs=20,
                     validation_data=validation_generator,
                     validation_steps=steps_per_epoch_validation,
                     callbacks=[checkpoint_callback])
 
 # Plot training history
+# Plot training history
 plt.plot(history.history['accuracy'], label='Training Accuracy')
 plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
+plt.plot(history.history['loss'], label='Training loss')
+plt.plot(history.history['val_loss'], label='Validation loss')
 plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.legend()
 plt.show()
-model.save('your_model.h5')
+model.save('your_model_2.h5')
+
+# Save the class names to a JSON file
+class_names_file = '/Users/tanekanz/CEPP-2/class_names.json'
+with open(class_names_file, 'w') as f:
+    json.dump(class_names, f)
