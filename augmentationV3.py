@@ -28,7 +28,8 @@ def augment_images_for_all_folders(main_folder, output_folder_prefix='Aug', num_
 
     # List all folders in the main directory
     folders = [folder for folder in os.listdir(main_folder) if os.path.isdir(os.path.join(main_folder, folder))]
-    
+
+    # Set the output folder path
     augcepp_output_folder = create_augmented_folder(main_folder)
 
     # Iterate through each folder
