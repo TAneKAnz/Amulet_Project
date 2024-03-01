@@ -119,7 +119,7 @@ def apply_augmentation(image, method):
         return cv2.add(image, noise)
 
 # Set the main folder path
-main_folder = '/Users/tanekanz/CEPP-2/CEPP'
+main_folder = '/Users/tanekanz/CEPP-2/Test'
 
 # Perform image augmentation for all folders in the specified directory
 augment_images_for_all_folders(main_folder)

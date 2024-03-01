@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 # Assuming you have a dataset with three classes and the data is organized in directories
 # such as 'class1', 'class2', and 'class3' in a parent directory 'data'
 
-data_dir = '/Users/tanekanz/CEPP-2/dataset/train'  # Update with the correct path
+data_dir = '/Users/tanekanz/CEPP-2/DATASET_ALL/dataset1/train'  # Update with the correct 'dataset' path
 batch_size = 128
 image_size = (224, 224)
 
@@ -54,7 +54,7 @@ test_generator = datagen.flow_from_directory(
 )
 
 # Save model history callback
-history_callback = tf.keras.callbacks.CSVLogger('/Users/tanekanz/CEPP-2/training_history.csv')  # Update with the correct path
+history_callback = tf.keras.callbacks.CSVLogger('/Users/tanekanz/CEPP-2/model/training_history.csv')  # Update with the correct path
 
 # Train the model
 history = model.fit(
@@ -65,11 +65,17 @@ history = model.fit(
 )
 
 # Save the entire model
-model.save('/Users/tanekanz/CEPP-2/mobilenetv2_model.h5')  # Update with the correct path
+model.save('/Users/tanekanz/CEPP-2/model/mobilenetv2_model_origin.h5')  # Update with the correct path
 
 # Plot training history
 plt.plot(history.history['accuracy'], label='Training Accuracy')
 plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.legend()
+plt.show()
+plt.plot(history.history['loss'], label='Training loss')
+plt.plot(history.history['val_loss'], label='Validation loss')
 plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.legend()

@@ -5,11 +5,11 @@ from tensorflow.keras.models import load_model
 import json
 
 # Load your trained model
-model_path = 'mobilenetv2_model.h5'  # Update with the correct path
+model_path = '/Users/tanekanz/CEPP-2/model/mobilenetv2_model_grey.h5'  # Update with the correct path
 model = load_model(model_path)
 
 # Path to the folder containing images for prediction
-test_dataset_path = '/Users/tanekanz/CEPP-2/AugTest'  # Update with the correct path
+test_dataset_path = '/Users/tanekanz/CEPP-2/Test/t'  # Update with the correct path
 
 # Load the class names used during training
 class_names_file = 'class_names.json'  # Update with the correct path
@@ -66,5 +66,6 @@ for pair in mismatched_pairs:
 
 # Calculate accuracy
 accuracy = correct_predictions / total_images
-print(f"\nTotal Correct Predictions: {correct_predictions}/{total_images}")
+print(f"\nUse model : {os.path.basename(model_path)}")
+print(f"Total Correct Predictions: {correct_predictions}/{total_images}")
 print(f"Accuracy: {accuracy * 100:.2f}%")
