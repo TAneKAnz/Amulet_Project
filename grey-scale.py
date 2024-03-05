@@ -23,8 +23,8 @@ def convert_folder_to_grayscale(input_folder, output_folder):
 
 if __name__ == "__main__":
     # Set the paths to your input and output folders
-    input_root_folder = "/Users/tanekanz/CEPP-2/AugTest"
-    output_root_folder = "/Users/tanekanz/CEPP-2/AugTest_GREY"
+    input_root_folder = "/Users/tanekanz/CEPP-2/Test"
+    output_root_folder = "/Users/tanekanz/CEPP-2/Test/Test_GREY"
 
     # Iterate through each subfolder in the root input folder
     for subfolder in os.listdir(input_root_folder):

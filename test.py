@@ -5,11 +5,11 @@ from tensorflow.keras.models import load_model
 import json
 
 # Load your trained model
-model_path = '/Users/tanekanz/CEPP-2/model/mobilenetv2_model_grey.h5'  # Update with the correct path
+model_path = '/Users/tanekanz/CEPP-2/model/mobilenetv2_model_grey_notcallback.h5'  # Update with the correct path model
 model = load_model(model_path)
 
 # Path to the folder containing images for prediction
-test_dataset_path = '/Users/tanekanz/CEPP-2/Test/t'  # Update with the correct path
+test_dataset_path = '/Users/tanekanz/CEPP-2/Test_GREY/t'  # Update with the correct path [origin, grey]
 
 # Load the class names used during training
 class_names_file = 'class_names.json'  # Update with the correct path
