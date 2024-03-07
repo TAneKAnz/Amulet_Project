@@ -3,10 +3,10 @@ import shutil
 from sklearn.model_selection import train_test_split
 
 # Set the path to your original dataset
-original_dataset_path = '/Users/tanekanz/CEPPP/ALL_GREY'  # Adjust this path to the location of your 'dataset' folder
+original_dataset_path = '/Users/tanekanz/DL/Augpokemon'  # Adjust this path to the location of your 'dataset' folder
 
 # Set the path to create the new dataset structure
-new_dataset_path = '/Users/tanekanz/CEPP-2'  # Adjust this path to the desired location
+new_dataset_path = '/Users/tanekanz/DL'  # Adjust this path to the desired location
 
 # Create the 'dataset' folder
 dataset_path = os.path.join(new_dataset_path, 'dataset')

@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 # Assuming you have a dataset with three classes and the data is organized in directories
 # such as 'class1', 'class2', and 'class3' in a parent directory 'data'
 
-data_dir = '/Users/tanekanz/CEPPP/ALL_GREY'  # Update with the correct 'dataset' path
-batch_size = 128
+data_dir = '/Users/tanekanz/DL/Augpokemon'  # Update with the correct 'dataset' path
+batch_size = 64
 image_size = (224, 224)
 
 # Create a data generator for data augmentation
@@ -31,7 +31,7 @@ for layer in base_model.layers:
 model = tf.keras.models.Sequential([
     base_model,
     tf.keras.layers.GlobalAveragePooling2D(),
-    tf.keras.layers.Dense(21, activation='softmax')  # N classes
+    tf.keras.layers.Dense(19, activation='softmax')  # N classes
 ])
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
@@ -65,7 +65,7 @@ history = model.fit(
 )
 
 # Save the entire model
-model.save('/Users/tanekanz/CEPP-2/model/mobilenetv2_model_grey_notcallback.h5')  # Update with the correct path
+model.save('/Users/tanekanz/DL/model/mnetv2_pokemon2.h5')  # Update with the correct path
 
 # Plot training history
 plt.plot(history.history['accuracy'], label='Training Accuracy')
