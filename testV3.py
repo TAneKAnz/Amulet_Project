@@ -14,8 +14,7 @@ parent_folder_path = '/Users/tanekanz/CEPP-2/Test'  # Update with the correct pa
 class_path = '/Users/tanekanz/CEPP-2/CEPP'
 
 # Get the subfolder names as class names
-#class_names = sorted(os.listdir(class_path)) # Get the class names
-class_names = sorted(os.listdir(class_path))[1:]
+class_names = sorted(os.listdir(class_path)) # Get the class names
 
 # Initialize variables for accuracy calculation
 total_images = 0
@@ -58,7 +57,12 @@ for subfolder in class_names:
 
         # Map predicted class index to class name
         predicted_class_index = np.argmax(predictions[0])
-        predicted_class_name = class_names[predicted_class_index]
+        # Map predicted class index to class name
+        if predicted_class_index < len(class_names):
+            predicted_class_name = class_names[predicted_class_index]
+        else:
+            predicted_class_name = "Unknown"
+
 
         # Get the ground truth class (extracted from the folder name)
         true_class_name = subfolder  # Adjust this based on your folder naming convention
