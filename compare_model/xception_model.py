@@ -57,7 +57,7 @@ test_generator = datagen.flow_from_directory(
 
 history = model.fit(
     train_generator,
-    epochs=10,
+    epochs=20,
     validation_data=test_generator,
     #callbacks=[history_callback]
     #callbacks=[stop]

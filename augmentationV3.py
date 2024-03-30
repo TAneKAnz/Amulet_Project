@@ -66,7 +66,7 @@ def augment_images(input_folder, output_folder, num_augmentations=5):
             continue
 
         # Generate augmented versions using each method
-        for method in ['original', 'flip', 'rotate', 'color', 'skew', 'noise']:
+        for method in ['original', 'rotate', 'color', 'skew', 'noise']:
             for i in range(num_augmentations):
                 augmented_image = apply_augmentation(original_image, method)
 
@@ -74,14 +74,11 @@ def augment_images(input_folder, output_folder, num_augmentations=5):
                 output_file_name = f"{method}_{os.path.splitext(file)[0]}_{i+1}.jpg"
                 cv2.imwrite(os.path.join(output_folder, output_file_name), augmented_image)
 
+
 def apply_augmentation(image, method):
     # Method: original (no augmentation)
     if method == 'original':
         return image
-
-    # Method: flip horizontally
-    elif method == 'flip':
-        return cv2.flip(image, 1)
 
     # Method: rotate
     elif method == 'rotate':
@@ -110,16 +107,20 @@ def apply_augmentation(image, method):
 
     # Method: skew
     elif method == 'skew':
-        skew_matrix = np.float32([[1, 0.5, 0], [0, 1, 0]])
+        skew_factor = np.random.uniform(-0.3, 0.3)  # Random skew factor between -0.5 and 0.5
+        skew_direction = 1 if np.random.rand() < 0.5 else -1  # Randomly choose skew direction (left or right)
+
+        skew_matrix = np.float32([[1, skew_factor * skew_direction, 0], [0, 1, 0]])
+
         return cv2.warpAffine(image, skew_matrix, (image.shape[1], image.shape[0]))
 
     # Method: noise
     elif method == 'noise':
-        noise = np.random.normal(0, 2, image.shape).astype(np.uint8)
+        noise = np.random.normal(0, 1, image.shape).astype(np.uint8)
         return cv2.add(image, noise)
 
 # Set the main folder path
-main_folder = '/Users/tanekanz/DL/pokemon'
+main_folder = '/Users/tanekanz/CEPP-2/CEPP'
 
 # Perform image augmentation for all folders in the specified directory
 augment_images_for_all_folders(main_folder)

@@ -5,11 +5,11 @@ from tensorflow.keras.models import load_model
 import json
 
 # Load your trained model
-model_path = '/Users/tanekanz/CEPP-2/model/mobilenetv2_model_origin.h5'  # Update with the correct path model
+model_path = '/Users/tanekanz/CEPP-2/model/InceptionV3/InceptionV3_model.h5'  # Update with the correct path model
 model = load_model(model_path)
 
 # Parent folder containing subfolders with images for prediction
-parent_folder_path = '/Users/tanekanz/CEPP-2/Test'  # Update with the correct path [origin, grey]
+parent_folder_path = '/Users/tanekanz/CEPP-2/Test/t'  # Update with the correct path [origin, grey]
 
 class_path = '/Users/tanekanz/CEPP-2/CEPP'
 
@@ -24,7 +24,7 @@ mismatched_pairs = []
 
 # Define a function to preprocess an image for prediction
 def preprocess_image(image_path):
-    img = image.load_img(image_path, target_size=(224, 224))  # fix target_size (128, 224) for each model
+    img = image.load_img(image_path, target_size=(299, 299))  # fix target_size (128, 224) for each model
     img_array = image.img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)
     #img_array /= 255.0  # Normalize the image

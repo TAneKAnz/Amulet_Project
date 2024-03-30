@@ -58,13 +58,13 @@ test_generator = datagen.flow_from_directory(
 
 history = model.fit(
     train_generator,
-    epochs=10,
+    epochs=20,
     validation_data=test_generator,
     #callbacks=[history_callback]
     #callbacks=[stop]
 )
 
-model_save_path = '/Users/tanekanz/CEPP-2/model/compare/resnet-50_model.h5' # Save model PATH
+model_save_path = 'resnet-50_model.h5' # Save model PATH
 model.save(model_save_path)
 print(f"Model {'ResNet-50'} saved to {model_save_path}")
 
